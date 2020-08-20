@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.order(created_at: :desc)
   end
 
   # GET /tasks/1
@@ -28,6 +28,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
+        format.js { render :create, status: :created }
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
