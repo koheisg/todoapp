@@ -16,11 +16,6 @@
     <%= form.text_field :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
