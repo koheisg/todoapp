@@ -1,4 +1,5 @@
 <ul>
   <li><%= link_to_unless request.path == tasks_path, 'all', tasks_path %></li>
   <li><%= link_to_unless request.path == tasks_active_path, 'active', tasks_active_path %></li>
+  <li><%= link_to_unless request.path == tasks_completed_path, 'completed', tasks_completed_path %></li>
 </ul>

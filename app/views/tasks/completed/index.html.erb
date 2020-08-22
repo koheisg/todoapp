@@ -1,2 +1,22 @@
-<h1>Tasks::Completed#index</h1>
-<p>Find me in app/views/tasks/completed/index.html.erb</p>
+<h1>Tasks Completed</h1>
+
+<%= render 'tasks/nav' %>
+
+<%= render 'tasks/form', task: Task.new %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id='tasks'>
+    <%= render partial: 'tasks/task', collection: @tasks %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>
