@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  namespace :tasks do
-    get 'active/index', as: :active
-    get 'completed/index', as: :completed
+  resources :tasks do
+    collection do
+      get 'active', to: 'tasks/active#index'
+      get 'completed', to: 'tasks/completed#index'
+    end
   end
-  resources :tasks
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
