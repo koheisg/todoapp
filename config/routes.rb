@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :tasks do
+    get 'completed/index'
+  end
+  namespace :tasks do
     get 'active/index', as: :active
   end
   resources :tasks
