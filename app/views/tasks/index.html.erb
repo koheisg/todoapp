@@ -2,9 +2,9 @@
 
 <h1>Tasks</h1>
 
-<%= render 'nav' %>
+<%= render 'tasks/nav' %>
 
-<%= render 'form', task: Task.new %>
+<%= render 'tasks/form', task: Task.new %>
 
 <table>
   <thead>
@@ -15,7 +15,7 @@
   </thead>
 
   <tbody id='tasks'>
-    <%= render @tasks %>
+    <%= render partial: 'tasks/task', collection: @tasks %>
   </tbody>
 </table>
 
