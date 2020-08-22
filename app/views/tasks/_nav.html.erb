@@ -1,0 +1,4 @@
+<ul>
+  <li><%= link_to_unless request.path == tasks_path, 'all', tasks_path %></li>
+  <li><%= link_to_unless request.path == tasks_active_path, 'active', tasks_active_path %></li>
+</ul>
