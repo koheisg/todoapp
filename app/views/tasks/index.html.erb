@@ -2,7 +2,11 @@
 
 <h1>Tasks</h1>
 
-<%= render 'tasks/nav' %>
+<ul>
+  <li><%= link_to_unless request.path == tasks_path, 'all', tasks_path %></li>
+  <li><%= link_to_unless request.path == active_tasks_path, 'active', active_tasks_path %></li>
+  <li><%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path %></li>
+</ul>
 
 <%= render 'tasks/form', task: Task.new %>
 
