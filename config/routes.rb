@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tasks do
+  resources :tasks, only: [:index, :create, :update, :destroy] do
     collection do
       get 'active', to: 'tasks/active#index'
       get 'completed', to: 'tasks/completed#index'

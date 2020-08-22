@@ -8,7 +8,16 @@
   <li><%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path %></li>
 </ul>
 
-<%= render 'tasks/form', task: Task.new %>
+<%= form_with(model: Task.new) do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <table>
   <thead>
@@ -22,7 +31,3 @@
     <%= render partial: 'tasks/task', collection: @tasks %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
