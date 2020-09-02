@@ -4,12 +4,12 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.order(created_at: :desc)
+    @tasks = Task.where(user_id: @user[:info][:user_id]).order(created_at: :desc)
   end
 
   # POST /tasks.js
   def create
-    @task = Task.new(task_params)
+    @task = Task.new(task_params.merge(user_id: @user[:info][:user_id]))
 
     respond_to do |format|
       if @task.save
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1.js
   def update
     respond_to do |format|
-      if @task.update(task_params)
+      if @task.update(task_params.merge(user_id: @user[:info][:user_id]))
         format.js { render :update }
       else
         format.js { render :error, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = Task.where(user_id: @user[:info][:user_id]).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
