@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  include Secured
   before_action :set_task, only: [:update, :destroy]
 
   # GET /tasks
