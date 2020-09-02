@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= @user[:info][:name] %>'s Tasks</h1>
+<h1><%= @user[:info][:nickname] %>'s Tasks</h1>
 
 <ul>
   <li><%= link_to_unless request.path == tasks_path, 'all', tasks_path %></li>
