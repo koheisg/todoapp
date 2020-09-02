@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/show'
+  root 'home#show'
   resources :tasks, only: [:index, :create, :update, :destroy] do
     collection do
       get 'active', to: 'tasks/active#index'
