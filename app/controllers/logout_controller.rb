@@ -1,0 +1,2 @@
+class LogoutController < ApplicationController
+end
