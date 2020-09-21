@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.where(user_id: @user[:uid]).order(created_at: :desc)
+    @tasks = Task.where(user_id: @user[:uid]).order(created_at: :desc).page(params[:page])
   end
 
   # POST /tasks.js

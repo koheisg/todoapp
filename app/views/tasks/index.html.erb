@@ -31,3 +31,9 @@
     <%= render partial: 'tasks/task', collection: @tasks %>
   </tbody>
 </table>
+
+<% unless @tasks.last_page? %>
+  <div data-controller="infinity-loader" data-infinity-loader-url='<%= request.path %>'>
+    <div data-action='scroll@window->infinity-loader#load'></div>
+  </div>
+<% end %>
