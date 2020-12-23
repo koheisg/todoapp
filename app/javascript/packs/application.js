@@ -17,3 +17,4 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import "controllers"
+import { Turbo, cable } from "@hotwired/turbo-rails"
