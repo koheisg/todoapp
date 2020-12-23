@@ -8,16 +8,18 @@
   <li><%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path %></li>
 </ul>
 
-<%= form_with(model: Task.new) do |form| %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
+<turbo-frame>
+  <%= form_with(model: Task.new) do |form| %>
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_field :content %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</turbo-frame>
 
 <table>
   <thead>
@@ -28,7 +30,9 @@
   </thead>
 
   <tbody id='tasks'>
-    <%= render partial: 'tasks/task', collection: @tasks %>
+    <turbo-frame id="tasks">
+      <%= render partial: 'tasks/task', collection: @tasks %>
+    </turbo-frame>
   </tbody>
 </table>
 

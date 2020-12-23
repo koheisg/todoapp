@@ -1,4 +1,4 @@
-<tr class='task' data-task-id="<%= task.id %>" data-controller='task'>
+<tr class='task' data-task-id="<%= task.id %>" data-controller='task' id="<%= dom_id task %>">
   <td data-action="click->task#edit">
     <span data-target="task.text"><%= task.content %></span>
     <%= form_with(model: task, data: {target: 'task.form',

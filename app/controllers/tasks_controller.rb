@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.js { render :create, status: :created }
+        format.turbo_stream { render turbo_stream: turbo_stream.prepend(:tasks, @task) }
       else
         format.js { render :error, status: :unprocessable_entity }
       end
