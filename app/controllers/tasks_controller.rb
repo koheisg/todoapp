@@ -22,14 +22,11 @@ class TasksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tasks/1.js
+  # PATCH/PUT /tasks/1
   def update
     respond_to do |format|
-      if @task.update(task_params.merge(user_id: @user[:uid]))
-        format.js { render :update }
-      else
-        format.js { render :error, status: :unprocessable_entity }
-      end
+      @task.update(task_params.merge(user_id: @user[:uid]))
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("task_#{@task.id}", @task) }
     end
   end
 

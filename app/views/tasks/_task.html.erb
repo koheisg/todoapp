@@ -1,13 +1,13 @@
 <tr class='task' data-task-id="<%= task.id %>" data-controller='task' id="<%= dom_id task %>">
   <td data-action="click->task#edit">
     <span data-target="task.text"><%= task.content %></span>
-    <%= form_with(model: task, data: {target: 'task.form',
-                                      action: 'ajax:send->task#loading
-                                               ajax:complete->task#complete'}, class: 'hide') do |form| %>
-      <div class="field">
-        <div><%= form.text_field :content, data: {target: 'task.input', action: 'blur->task#show'} %></div>
-      </div>
-    <% end %>
+    <turbo-frame>
+      <%= form_with(model: task, data: {target: 'task.form'}, class: "#{ task.errors.any? ? '' : 'hide'}") do |form| %>
+        <div class="field">
+          <div><%= form.text_field :content, data: {target: 'task.input', action: 'blur->task#show'} %></div>
+        </div>
+      <% end %>
+    </turbo-frame>
   </td>
   <td>
     <%= link_to_if task.completed?, '✔', [task, { task: { status: 'active' }}], method: 'patch', remote: true do %>

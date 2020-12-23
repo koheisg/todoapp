@@ -13,14 +13,4 @@ export default class extends Controller {
     this.textTarget.classList.add("hide")
     this.inputTarget.focus()
   }
-
-  loading() {
-    this.textTarget.classList.remove("hide")
-    this.formTarget.classList.add("hide")
-  }
-
-  complete(){
-    this.textTarget.classList.remove("hide")
-    this.formTarget.classList.add("hide")
-  }
 }
