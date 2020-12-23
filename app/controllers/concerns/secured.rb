@@ -6,8 +6,11 @@ module Secured
   end
 
   def logged_in_using_omniauth?
-    return redirect_to '/' unless session[:userinfo].present?
-
-    @user = session[:userinfo]
+    if Rails.env.production?
+      return redirect_to '/' unless session[:userinfo].present?
+      @user = session[:userinfo]
+    else
+      @user = {uid: nil, info: {nickname: 'developer'}}
+    end
   end
 end
