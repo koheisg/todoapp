@@ -8,18 +8,7 @@
   <li><%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path %></li>
 </ul>
 
-<turbo-frame>
-  <%= form_with(model: Task.new) do |form| %>
-    <div class="field">
-      <%= form.label :content %>
-      <%= form.text_field :content %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
-</turbo-frame>
+<%= render 'form', task: Task.new %>
 
 <table>
   <thead>

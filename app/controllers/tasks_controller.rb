@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     @tasks = Task.where(user_id: @user[:uid]).order(created_at: :desc).page(params[:page])
   end
 
-  # POST /tasks.js
+  # POST /tasks
   def create
     @task = Task.new(task_params.merge(user_id: @user[:uid]))
 
@@ -15,7 +15,9 @@ class TasksController < ApplicationController
       if @task.save
         format.turbo_stream { render turbo_stream: turbo_stream.prepend(:tasks, @task) }
       else
-        format.js { render :error, status: :unprocessable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(:form, partial: "tasks/form", locals: { task: @task })
+        end
       end
     end
   end
