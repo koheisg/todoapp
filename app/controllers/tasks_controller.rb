@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.js { render :destroy }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("task_#{@task.id}") }
     end
   end
 
