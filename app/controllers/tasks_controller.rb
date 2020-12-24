@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       @task.update(task_params.merge(user_id: @user[:uid]))
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("task_#{@task.id}", @task) }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@task) }
     end
   end
 
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("task_#{@task.id}") }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
     end
   end
 
