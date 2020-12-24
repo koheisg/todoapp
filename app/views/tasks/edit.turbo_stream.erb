@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@task, :edit) do %>
+  <%= form_with(model: @task, data: {target: 'task.form'}) do |form| %>
+    <div class="field">
+      <div><%= form.text_field :content, data: {target: 'task.input', action: 'blur->task#show'} %></div>
+    </div>
+  <% end %>
+<% end %>

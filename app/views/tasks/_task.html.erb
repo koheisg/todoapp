@@ -1,11 +1,8 @@
-<tr class='task' data-task-id="<%= task.id %>" data-controller='task' id="<%= dom_id task %>">
-  <td data-action="click->task#edit">
-    <span data-target="task.text"><%= task.content %></span>
+<tr class='task' data-task-id="<%= task.id %>" id="<%= dom_id task %>">
+  <td>
     <turbo-frame>
-      <%= form_with(model: task, data: {target: 'task.form'}, class: "#{ task.errors.any? ? '' : 'hide'}") do |form| %>
-        <div class="field">
-          <div><%= form.text_field :content, data: {target: 'task.input', action: 'blur->task#show'} %></div>
-        </div>
+      <%= link_to edit_task_path(task), id: dom_id(task, :edit) do %>
+        <span><%= task.content %></span>
       <% end %>
     </turbo-frame>
   </td>

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   include Secured
-  before_action :set_task, only: [:update, :destroy]
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   # GET /tasks
   def index
@@ -22,11 +22,18 @@ class TasksController < ApplicationController
     end
   end
 
+  # GET /edit/1
+  def edit
+  end
+
   # PATCH/PUT /tasks/1
   def update
     respond_to do |format|
-      @task.update(task_params.merge(user_id: @user[:uid]))
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(@task) }
+      if @task.update(task_params.merge(user_id: @user[:uid]))
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task) }
+      else
+        format.turbo_stream { render :edit }
+      end
     end
   end
 
