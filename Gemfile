@@ -31,7 +31,7 @@ gem 'bootsnap', require: false
 gem 'omniauth-auth0'
 gem 'kaminari'
 
-gem 'turbo-rails'
+gem 'hotwire-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
