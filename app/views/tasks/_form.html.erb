@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= form_with(model: task) do |form| %>
+  <%= form_with(model: task, data: {controller: 'reset_form', action: "turbo:submit-end->reset_form#reset"}) do |form| %>
     <div class="field">
       <%= form.label :content %>
       <%= form.text_field :content %>
