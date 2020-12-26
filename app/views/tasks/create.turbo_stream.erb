@@ -1,0 +1,6 @@
+<%= turbo_stream.replace(dom_id(Task.new)) do %>
+  <div id="<%= dom_id(Task.new) %>">
+    <%= render partial: 'tasks/form', locals: {task: Task.new}, formats: :html  %>
+  </div>
+<% end %>
+<%= turbo_stream.prepend(:tasks, @task) %>

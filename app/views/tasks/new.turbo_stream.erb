@@ -1,5 +1,5 @@
-<%= turbo_stream.replace dom_id(@task, :edit) do %>
-  <div id="<%= dom_id(@task, :edit) %>">
+<%= turbo_stream.replace @task do %>
+  <div id="<%= dom_id(@task) %>">
     <%= render partial: 'tasks/form', locals: {task: @task}, formats: :html  %>
   </div>
 <% end %>

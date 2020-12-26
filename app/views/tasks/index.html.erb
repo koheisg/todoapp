@@ -8,7 +8,11 @@
   <li><%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path %></li>
 </ul>
 
-<%= render 'tasks/form', task: Task.new %>
+<turbo-frame id="form">
+  <div id="<%= dom_id(Task.new) %>">
+    <%= render 'tasks/form', task: Task.new %>
+  </div>
+</turbo-frame>
 
 <table>
   <thead>

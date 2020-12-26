@@ -13,11 +13,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.turbo_stream { render turbo_stream: turbo_stream.prepend(:tasks, @task) }
+        format.turbo_stream { render :create }
       else
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(:form, partial: "tasks/form", locals: { task: @task })
-        end
+        format.turbo_stream { render :new }
       end
     end
   end
