@@ -1,5 +1,5 @@
 import { Controller } from "stimulus"
-import Rails from '@rails/ujs'
+import { Turbo } from "@hotwired/turbo-rails"
 
 export default class extends Controller {
   connect() {
@@ -12,7 +12,7 @@ export default class extends Controller {
     const page = this.data.get('count')
     if (scrollBottom === 0) {
       const url = this.data.get("url")
-      Rails.ajax({type: "GET", url: `${url}.js?page=${page}`})
+      Turbo.visit(`${url}.turbo_stream?page=${page}`)
       this.data.set("count", parseInt(page) + 1)
     }
   }

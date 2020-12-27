@@ -1,0 +1,3 @@
+<%= turbo_stream.append(:tasks) do %>
+  <%= render partial: 'tasks/task', collection: @tasks, formats: :html %>
+<% end %>
