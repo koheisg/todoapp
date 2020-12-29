@@ -1,5 +1,19 @@
 <%= turbo_stream.replace dom_id(@task, :edit) do %>
-  <div id="<%= dom_id(@task, :edit) %>">
-    <%= render partial: 'tasks/form', locals: {task: @task}, formats: :html  %>
-  </div>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% @task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag dom_id(@task) do %>
+    <%= form_with(model: @task, data: {controller: 'reset_form', action: "turbo:submit-end->reset_form#reset"}) do |form| %>
+      <%= form.text_field :content %>
+    <% end %>
+  <% end %>
 <% end %>

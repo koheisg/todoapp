@@ -3,16 +3,22 @@
 <h1><%= @user[:info][:nickname] %>'s Tasks</h1>
 
 <ul>
-  <li><%= link_to_unless request.path == tasks_path, 'all', tasks_path %></li>
-  <li><%= link_to_unless request.path == active_tasks_path, 'active', active_tasks_path %></li>
-  <li><%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path %></li>
+  <li>
+    <%= link_to_unless request.path == tasks_path, 'all', tasks_path, data: {turbo: false} %>
+  </li>
+  <li>
+    <%= link_to_unless request.path == active_tasks_path, 'active', active_tasks_path, data: {turbo: false} %>
+  </li>
+  <li>
+    <%= link_to_unless request.path == completed_tasks_path, 'completed', completed_tasks_path, data: {turbo: false} %>
+  </li>
 </ul>
 
-<turbo-frame id="form">
+<%= turbo_frame_tag "form" do %>
   <div id="<%= dom_id(Task.new) %>">
     <%= render 'tasks/form', task: Task.new %>
   </div>
-</turbo-frame>
+<% end %>
 
 <table>
   <thead>
@@ -23,9 +29,9 @@
   </thead>
 
   <tbody id='tasks'>
-    <turbo-frame id="tasks">
+    <%= turbo_frame_tag "tasks" do %>
       <%= render partial: 'tasks/task', collection: @tasks %>
-    </turbo-frame>
+    <% end %>
   </tbody>
 </table>
 

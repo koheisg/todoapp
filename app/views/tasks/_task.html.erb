@@ -1,21 +1,21 @@
 <tr class='task' data-task-id="<%= task.id %>" id="<%= dom_id task %>">
   <td>
-    <turbo-frame>
-      <%= link_to edit_task_path(task), id: dom_id(task, :edit) do %>
+    <%= turbo_frame_tag dom_id(task, :edit) do %>
+      <%= link_to edit_task_path(task) do %>
         <span><%= task.content %></span>
       <% end %>
-    </turbo-frame>
+    <% end %>
   </td>
   <td>
-    <turbo-frame>
+    <%= turbo_frame_tag dom_id(task, :completed) do %>
       <%= link_to_if task.completed?, '✔', [task, { task: { status: 'active' }}], method: 'patch' do %>
         <%= link_to '🗆', [task, { task: { status: 'completed' }}], method: 'patch' %>
       <% end %>
-    </turbo-frame>
+    <% end %>
   </td>
   <td>
-    <turbo-frame>
+    <%= turbo_frame_tag dom_id(task, :delete) do %>
       <%= link_to 'X', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </turbo-frame>
+    <% end %>
   </td>
 </tr>
